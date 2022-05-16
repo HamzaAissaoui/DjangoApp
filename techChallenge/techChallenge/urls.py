@@ -26,7 +26,7 @@ def index(request):
 urlpatterns = [
     path('api/v1/', 
         include([
-            path('provider/', include('provider.urls')),
+            path('providers/', include('provider.urls')),
         ])
     ),
     path('', index),
