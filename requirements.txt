@@ -2,3 +2,4 @@ django
 pillow
 python-dotenv
 psycopg2
+django-ratelimit
