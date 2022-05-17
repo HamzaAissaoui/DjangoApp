@@ -5,5 +5,6 @@ urlpatterns = [
     path('', views.get_all_providers),
     path('<int:id>', views.get_provider_by_id),
     path('create', views.create_provider),
+    path('<int:id>/delete', views.delete_provider_by_id),
 
 ]

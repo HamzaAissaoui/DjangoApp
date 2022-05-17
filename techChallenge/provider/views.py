@@ -1,6 +1,5 @@
-from locale import currency
-from django.views.decorators.http import require_GET, require_POST
-from django.http import HttpResponse
+from django.views.decorators.http import require_GET, require_POST, require_http_methods
+from django.http import HttpResponse, HttpResponseNotFound
 from .models import Provider
 from ratelimit.decorators import ratelimit
 from .helper import validate_create_data
@@ -17,8 +16,15 @@ def get_all_providers(request):
     return HttpResponse(page_obj)
 
 @require_GET
-def get_provider_by_id(request, id):
-    return HttpResponse(Provider.objects.filter(id=id))
+def get_provider_by_id(request, id=None):
+    p = Provider.objects.filter(id=id)
+    return HttpResponse(p) if p else HttpResponseNotFound('Provider does not exist')
+
+
+@require_http_methods(['DELETE'])
+def delete_provider_by_id(request, id):
+    p = Provider.objects.filter(id=id)
+    return HttpResponse(p.delete()) if p else HttpResponseNotFound('Provider does not exist')
 
 @require_POST
 @ratelimit(key='ip', rate='10/m')
