@@ -2,7 +2,7 @@ from django.views.decorators.http import require_GET, require_POST, require_http
 from django.http import HttpResponse, HttpResponseNotFound
 from .models import Provider
 from ratelimit.decorators import ratelimit
-from .helper import validate_create_data
+from .helper import validate_create_data, validate_update_data
 from django.core.paginator import Paginator
 # Create your views here.
 
@@ -20,12 +20,6 @@ def get_provider_by_id(request, id=None):
     p = Provider.objects.filter(id=id)
     return HttpResponse(p) if p else HttpResponseNotFound('Provider does not exist')
 
-
-@require_http_methods(['DELETE'])
-def delete_provider_by_id(request, id):
-    p = Provider.objects.filter(id=id)
-    return HttpResponse(p.delete()) if p else HttpResponseNotFound('Provider does not exist')
-
 @require_POST
 @ratelimit(key='ip', rate='10/m')
 def create_provider(request):
@@ -39,3 +33,25 @@ def create_provider(request):
             )
     p.save()
     return HttpResponse(p, status=201)
+
+
+
+
+@require_http_methods(['DELETE'])
+def delete_provider_by_id(request, id):
+    p = Provider.objects.filter(id=id)
+    return HttpResponse(p.delete()) if p else HttpResponseNotFound('Provider does not exist')
+
+
+
+
+@require_http_methods(['PUT'])
+def update_provider_by_id(request, id):
+    provider_query = Provider.objects.filter(id=id)
+    if not provider_query: return HttpResponseNotFound('Provider does not exist')
+    data = validate_update_data(request, provider_query.first())
+    if not isinstance(data, dict): return data
+    provider_query.update(name=data['name'], email=data['email'], phone_number=data['phone_number'], language=data['language'], currency=data['currency'])
+    for query in provider_query:
+        query.save()
+    return HttpResponse(provider_query)
