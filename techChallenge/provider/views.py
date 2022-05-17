@@ -40,7 +40,10 @@ def create_provider(request):
 @require_http_methods(['DELETE'])
 def delete_provider_by_id(request, id):
     p = Provider.objects.filter(id=id)
-    return HttpResponse(p.delete()) if p else HttpResponseNotFound('Provider does not exist')
+    if not p:
+        return HttpResponseNotFound('Provider does not exist')
+    p.delete()
+    return HttpResponse('Provider Deleted successfully!')
 
 
 
