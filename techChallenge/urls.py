@@ -16,16 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-from django.http import HttpResponse
+from .views import index
 
-def index(request):
-    documentation_link='localhost:8000/api/v1/documentation'
-    return HttpResponse(f"""<h1>Welcome To The Tech Challenge, please visit: 
-                        <a href='{documentation_link}'>API Documentation</a></h1>""")
+
 
 urlpatterns = [
     path('api/v1/', 
         include([
+            path('', index),
             path('providers/', include('provider.urls')),
         ])
     ),
