@@ -25,6 +25,7 @@ urlpatterns = [
         include([
             path('', index),
             path('providers/', include('provider.urls')),
+            path('service-areas/', include('polygon.urls')),
         ])
     ),
     path('', index),

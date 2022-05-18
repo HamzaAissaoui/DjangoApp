@@ -1,9 +1,9 @@
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 from django.http import HttpResponse, HttpResponseNotFound
-from .models import Provider
+from django.core.paginator import Paginator
 from ratelimit.decorators import ratelimit
 from .helper import validate_create_data, validate_update_data
-from django.core.paginator import Paginator
+from .models import Provider
 
 @require_GET
 def get_all_providers(request):
@@ -19,7 +19,7 @@ def get_provider_by_id(request, id=None):
     return HttpResponse(p) if p else HttpResponseNotFound('Provider does not exist')
 
 @require_POST
-@ratelimit(key='ip', rate='10/m')
+@ratelimit(key='ip', rate='5/m')
 def create_provider(request):
     data = validate_create_data(request)
     if not isinstance(data, dict): return data
