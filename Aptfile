@@ -1,4 +1,6 @@
+gdal-bin
 libpq-dev
-http://ports.ubuntu.com/pool/universe/g/gdal/libgdal-dev_2.2.3+dfsg-2_arm64.deb
+libgdal-dev
 libatlas-base-dev
 libatlas3-base
+python-gdal
