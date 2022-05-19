@@ -1,5 +1,6 @@
+wheel
 setuptools==57.5.0
-gdal --global-option build_ext --global-option "-I/app/.apt/usr/include/gdal/"
+GDAL-3.4.2-cp37-cp37m-win_amd64
 asgiref==3.5.1
 dj-database-url==0.5.0
 Django==3.2.13
