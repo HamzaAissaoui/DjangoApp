@@ -1,6 +1,4 @@
 libpq-dev
 libgdal-dev
 libatlas-base-dev
-libhdf5-serial-dev
-libhdf5-dev
-libatlas-base-dev
+libatlas3-base
