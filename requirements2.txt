@@ -1,1 +1,2 @@
-gdal==3.0.4 --global-option=build_ext  --global-option='-I/usr/include/gdal/'   
+gdal==\`gdal-config --version\` --global-option=build_ext  --global-option='-I/usr/include/gdal/'   
+ 
