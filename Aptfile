@@ -1,4 +1,4 @@
 libpq-dev
-libgdal-dev libgdal1h
+http://ftp.de.debian.org/debian/pool/main/g/gdal/libgdal20_2.4.0+dfsg-1+b1_amd64.deb
 libatlas-base-dev
 libatlas3-base
