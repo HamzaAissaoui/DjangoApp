@@ -1,5 +1,5 @@
 setuptools==57.5.0
-GDAL-3.3.3-pp37-pypy37_pp73-win_amd64.whl
+GDAL-3.1.4-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.whl
 asgiref==3.5.1
 dj-database-url==0.5.0
 Django==3.2.13
