@@ -1,2 +1,2 @@
-gdal==2.4.0 --global-option=build_ext  --global-option='-I/usr/include/gdal/'   
+gdal==2.2.3 --global-option=build_ext  --global-option='-I/usr/include/gdal/'   
  
