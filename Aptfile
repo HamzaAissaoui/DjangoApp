@@ -1,2 +1,8 @@
 libpq-dev
 libgdal-dev
+libatlas-base-dev
+libjasper-dev 
+libqt4-test
+libhdf5-serial-dev
+libhdf5-dev
+libcblas-dev
