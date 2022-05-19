@@ -3,4 +3,4 @@ libgdal-dev
 libatlas-base-dev
 libhdf5-serial-dev
 libhdf5-dev
-libcblas-dev
+libatlas-base-dev
