@@ -1,2 +1,2 @@
-gdal --global-option='-I/app/.apt/usr/include/gdal'   
+gdal
  
