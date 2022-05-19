@@ -1,5 +1,5 @@
 setuptools==57.5.0
-gdal --global-option 'I/app/.apt/usr/include/gdal' --global-option '--include-dirs=/app/.apt/usr/include/gdal' --global-option '--library-dirs=/app/.apt/usr/include/gdal'  
+gdal --global-option '--include-dirs=/app/.apt/usr/include/gdal'
 asgiref==3.5.1
 dj-database-url==0.5.0
 Django==3.2.13
