@@ -1,5 +1,5 @@
 setuptools==57.5.0
-gdal==3.0.4 --global-option build_ext --global-option "-I/app/.apt/usr/include/gdal"
+gdal --global-option build_ext --global-option "-I/app/.apt/usr/include/gdal/"
 asgiref==3.5.1
 dj-database-url==0.5.0
 Django==3.2.13
