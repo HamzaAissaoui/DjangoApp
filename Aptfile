@@ -3,3 +3,4 @@ libpq-dev
 libgdal-dev
 libatlas-base-dev
 libatlas3-base
+libgfortran3:x86_64
