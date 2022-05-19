@@ -1,6 +1,5 @@
 libgfortran5
-gdal-bin
+libatlas3-base
+libatlas-base-dev
 libpq-dev
 libgdal-dev
-libatlas-base-dev
-libatlas3-base
