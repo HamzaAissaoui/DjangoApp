@@ -1,5 +1,5 @@
 setuptools==57.5.0
-gdal --install-option='CPLUS_INCLUDE_PATH=/app/.apt/usr/include/gdal' --install-option='C_INCLUDE_PATH=/app/.apt/usr/include/gdal'   
+gdal --install-option="--install-scripts=/app/.apt/usr/include/gdal" 
 asgiref==3.5.1
 dj-database-url==0.5.0
 Django==3.2.13
