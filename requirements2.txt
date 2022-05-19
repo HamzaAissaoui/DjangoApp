@@ -1,2 +1,2 @@
-gdal --global-option=build_ext  --global-option='-I/app/.apt/usr/include/gdal'   
+gdal --global-option='-I/app/.apt/usr/include/gdal'   
  
