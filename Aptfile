@@ -1,4 +1,4 @@
-libgfortran3:x86_64
+libgfortran3
 gdal-bin
 libpq-dev
 libgdal-dev
