@@ -7,8 +7,8 @@ class Polygon(models.Model):
     p_name = models.CharField(max_length=100)
     price = models.FloatField()
     information = models.PolygonField()
-    name = models.ForeignKey(Provider, to_field="name",
+    provider = models.ForeignKey(Provider, to_field="name",
                              db_column="name", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"\n- Polygon({self.p_name!r}, {self.price!r}, {self.information!r})"
+        return f"\n- N° {self.id}: name = {self.p_name!r}, provider_name = {self.provider.name!r}, price = {self.price!r}"
