@@ -1,5 +1,5 @@
 # DjangoApp
-All API Documentation can be found here: postman.com/galactic-moon-353783/workspace/my-workspace 
+All API Documentation can be found here: https://postman.com/galactic-moon-353783/workspace/my-workspace 
 
 This is a REST API that has API endpoints to create, update, delete, and retrieve information about providers. A provider contains the following information:
 - Name
