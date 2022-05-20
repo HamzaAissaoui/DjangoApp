@@ -19,16 +19,14 @@ from django.conf.urls import include
 from .views import index
 
 
-
 urlpatterns = [
-    path('api/v1/', 
-        include([
-            path('', index),
-            path('providers/', include('provider.urls')),
-            path('service-areas/', include('polygon.urls')),
-        ])
-    ),
+    path('api/v1/',
+         include([
+             path('', index),
+             path('providers/', include('provider.urls')),
+             path('service-areas/', include('polygon.urls')),
+         ])
+         ),
     path('', index),
     path('admin/', admin.site.urls),
-
 ]

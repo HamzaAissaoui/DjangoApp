@@ -1,8 +1,7 @@
-from typing import Type
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseForbidden, HttpResponseNotFound
 import json
 from .models import Polygon
-invalid_polygon_message = """Invalid polygon:
+INVALID_POLYGON_MESSAGE = """Invalid polygon:
                             - coordinates should be in the form [ [ x , y ] , [ x , y ] , [ x , y ] , [ x , y ] ]
                             - first and last point need to have the same coordinates
                             - there should be at least 4 points"""

@@ -7,4 +7,4 @@ urlpatterns = [
     path('<int:id>', views.get_polygon_by_id),
     path('<int:id>/delete', views.delete_polygon_by_id),
     path('<int:id>/update', views.update_polygon_by_id),
-]            
+]

@@ -21,7 +21,8 @@ class Migration(migrations.Migration):
                 ('p_name', models.CharField(max_length=100)),
                 ('price', models.FloatField()),
                 ('information', django.contrib.gis.db.models.fields.PolygonField(srid=4326)),
-                ('name', models.ForeignKey(db_column='name', on_delete=django.db.models.deletion.CASCADE, to='provider.provider', to_field='name')),
+                ('name', models.ForeignKey(db_column='name', on_delete=django.db.models.deletion.CASCADE,
+                                           to='provider.provider', to_field='name')),
             ],
         ),
     ]

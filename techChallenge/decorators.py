@@ -7,7 +7,6 @@ default_message = 'You need to create a provider and add the "name" in headers'
 
 
 def authorize(func):
-    
     """Only providers are allowed to access"""
     @wraps(func)
     def inner(request, *args, **kwargs):

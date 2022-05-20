@@ -54,8 +54,8 @@ def update_provider_by_id(request, id):
 
     data = validate_update_data(request, provider_query.first())
     if not isinstance(data, dict):
-        return data #Http Error
-        
+        return data  # Http Error
+
     provider_query.update(name=data['name'], email=data['email'],
                           phone_number=data['phone_number'], language=data['language'], currency=data['currency'])
     for query in provider_query:
