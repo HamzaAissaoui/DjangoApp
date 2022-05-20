@@ -22,18 +22,18 @@ def get_provider_by_id(request, id=None):
 
 
 @require_POST
-@ratelimit(key='ip', rate='5/m')  # to avoid spamming
+@ratelimit(key='ip', rate='5/m')  # To avoid spamming
 def create_provider(request):
-    data = validate_create_data(request)
+    data = validate_create_data(request)  # Returns either the data or an http error
     if not isinstance(data, dict):
-        return data  # Http Error
+        return data  # HTTP Error
 
     p = Provider(
         name=data['name'], email=data['email'], phone_number=data['phone_number'],
         language=data['language'], currency=data['currency']
     )
-
     p.save()
+    
     return HttpResponse(p, status=201)
 
 
@@ -52,12 +52,15 @@ def update_provider_by_id(request, id):
     if not provider_query:
         return HttpResponseNotFound('Provider does not exist')
 
+    # Returns either the data or an http error
     data = validate_update_data(request, provider_query.first())
     if not isinstance(data, dict):
-        return data  # Http Error
+        return data  # HTTP Error
 
     provider_query.update(name=data['name'], email=data['email'],
                           phone_number=data['phone_number'], language=data['language'], currency=data['currency'])
+
     for query in provider_query:
         query.save()
+
     return HttpResponse(provider_query)

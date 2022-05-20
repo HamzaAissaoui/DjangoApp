@@ -8,6 +8,9 @@ INVALID_POLYGON_MESSAGE = """Invalid polygon:
 
 
 def validate_create_data(request, provider):
+    """If the data is valid, it returns it.
+    If it's not valid, it returns an HTTP error.
+    """
     if not request.body:
         return HttpResponseBadRequest('No data was received')
 
@@ -20,7 +23,7 @@ def validate_create_data(request, provider):
         return HttpResponseBadRequest('p_name and price and coordinates are required')
 
     if Polygon.objects.filter(p_name=p_name, provider=provider):
-        return HttpResponse('polygon already exists for this user', status=409)
+        return HttpResponse('polygon already exists for this user!', status=409)
 
     return data
 
@@ -47,7 +50,7 @@ def validate_update_data(request, polygon):
         return HttpResponseBadRequest('No data was received')
 
     data = json.loads(request.body.decode('utf-8'))
-    data['p_name'] = data.get('p_name', polygon.p_name)
+    data['p_name'] = data.get('p_name', polygon.p_name)  # Default value in case the field is not to be updated 
     data['price'] = data.get('price', polygon.price)
     data['information'] = data.get('coordinates', None)
 

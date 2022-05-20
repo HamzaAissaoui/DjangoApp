@@ -3,8 +3,5 @@ from django.http import HttpResponse
 
 
 def index(request):
-    context_dict = {
-        'documentation': 'api/v1/'
-    }
-    template = render_to_string("home.html", context_dict)
+    template = render_to_string("home.html")
     return HttpResponse(template)

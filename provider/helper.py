@@ -10,7 +10,7 @@ def validate_create_data(request):
     data = json.loads(request.body.decode('utf-8'))
     name = data.get('name', "")
     email = data.get('email', "")
-    data['phone_number'] = data.get('phone_number', "")  # It's not mandatory
+    data['phone_number'] = data.get('phone_number', "")  # It's not mandatory, default value is """
     data['language'] = data.get('language', "")
     data['currency'] = data.get('currency', "")
 

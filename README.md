@@ -22,4 +22,4 @@ There is also Basic Authentication (Using provider name in headers) to be able t
 
 The code Follows standard pep8 style.
 
-Currently workin on unit and integration tests.
+Currently working on unit and integration tests.
