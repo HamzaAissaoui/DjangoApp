@@ -17,7 +17,9 @@ Once a provider is created they are be able to start defining service areas. The
 There is also an API endpoint that takes a lat/lng pair as arguments and returns a list of all polygons that include the given lat/lng. 
     
 All of this was built with Django and PostgreSQL with Postgis extension.
-There also Basic Authentication (Using provider name in headers) to be able to manipulate Polygons.
+
+There is also Basic Authentication (Using provider name in headers) to be able to manipulate Polygons.
+
 The code Follows standard pep8 style.
 
 Currently workin on unit and integration tests.
