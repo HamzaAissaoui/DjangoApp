@@ -31,7 +31,7 @@ def populate_provider():
 
 
 def add_provider(name, email, phone_number):
-    p = Provider.objects.get_or_create(email=email)[0]
+    p = Provider.objects.get_or_create(name=name)[0]
     p.name = name
     p.email = email
     p.phone_number = phone_number
