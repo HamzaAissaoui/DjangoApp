@@ -26,7 +26,6 @@ def get_polygons(request):
 
 
 @require_GET
-@authorize
 def get_polygon_by_id(request, id):
     polygon = Polygon.objects.filter(id=id).first()
     return HttpResponse(polygon) if polygon else HttpResponseNotFound('Polygon does not exist!')
