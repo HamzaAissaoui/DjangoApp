@@ -10,7 +10,6 @@ from .helper import validate_create_data, INVALID_POLYGON_MESSAGE, check_polygon
 
 
 @require_GET
-@authorize
 def get_polygons(request):
     lng = request.GET.get('lng', None)  # Default value None
     lat = request.GET.get('lat', None)
