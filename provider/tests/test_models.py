@@ -3,9 +3,9 @@ from provider.models import Provider
 # Create your tests here.
 
 
-class AuthorModelTest(TestCase):
+class ProviderModelTest(TestCase):
     field_list = ['name', 'email', 'phone_number', 'language', 'currency']
-    
+
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
@@ -35,7 +35,8 @@ class AuthorModelTest(TestCase):
         field_names = []
         for field in self.field_list:
             field_names.append(provider._meta.get_field(field).verbose_name)
-        self.assertEqual(['name', 'email', 'phone number', 'language', 'currency'], field_names)
+        self.assertEqual(['name', 'email', 'phone number',
+                         'language', 'currency'], field_names)
 
     def test_fields_null_acceptance(self):
         provider = Provider.objects.get(id=1)
