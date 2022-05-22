@@ -4,21 +4,24 @@ from django.core.paginator import Paginator
 from ratelimit.decorators import ratelimit
 from .helper import validate_create_data, validate_update_data
 from .models import Provider
+from django.core import serializers
 
 
 @require_GET
 def get_all_providers(request):
     provider_list = Provider.objects.all()
     paginator = Paginator(provider_list, 20)  # Show 20 providers per page.
-    page_number = request.GET.get('page', 0)
+    page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
-    return HttpResponse(page_obj) if page_obj else HttpResponseNotFound('There are no providers')
+    response = serializers.serialize('json', page_obj)
+    return HttpResponse(response, content_type='application/json') if page_obj else HttpResponseNotFound('There are no providers')
 
 
 @require_GET
 def get_provider_by_id(request, id=None):
     p = Provider.objects.filter(id=id)
-    return HttpResponse(p) if p else HttpResponseNotFound('Provider does not exist')
+    response = serializers.serialize('json', p)
+    return HttpResponse(response, content_type='application/json') if p else HttpResponseNotFound('Provider does not exist')
 
 
 @require_POST
@@ -33,8 +36,8 @@ def create_provider(request):
         language=data['language'], currency=data['currency']
     )
     p.save()
-    
-    return HttpResponse(p, status=201)
+    response = serializers.serialize('json', p)
+    return HttpResponse(response, content_type='application/json')
 
 
 @require_http_methods(['DELETE'])
@@ -62,5 +65,6 @@ def update_provider_by_id(request, id):
 
     for query in provider_query:
         query.save()
-
-    return HttpResponse(provider_query)
+    response = serializers.serialize('json', provider_query)
+    return HttpResponse(response, content_type='application/json')
+    

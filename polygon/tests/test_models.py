@@ -13,7 +13,7 @@ class PolygonModelTest(TestCase):
     def setUpTestData(cls):
         coordinates = [ [ 0 , 0 ] , [ 3 , 6 ] , [ 6 , 1 ] , [ 0 , 0 ] ]
         information = Poly(coordinates)
-        provider = Provider.objects.create(name='test123', email='test1@gmail.com', phone_number='4084132222',
+        provider = Provider.objects.create(name='test123', email='test@gmail.com', phone_number='4084132222',
                                            language='French', currency='EUR')
         Polygon.objects.create(p_name='TestPolygon', price=29.59,
                     information=information, provider=provider)
