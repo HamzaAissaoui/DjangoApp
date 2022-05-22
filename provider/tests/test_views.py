@@ -10,7 +10,6 @@ class ProviderViewTest(TestCase):
     def setUp(self):
         # Create 13 providers for pagination tests
         number_of_providers = 22
-
         for provider_id in range(number_of_providers):
             Provider.objects.create(
                 name=f'Hamza {provider_id}',
@@ -33,6 +32,18 @@ class ProviderViewTest(TestCase):
 
     def test_list_all_providers(self):
         # Get second page and confirm it has (exactly) remaining 2 items
-        response = self.client.get(reverse('get-providers'), data={'page':2})
+        response = self.client.get(reverse('get-providers'), data={'page': 2})
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.json()), 2)
+
+    def test_get_provider_by_id_non_existant(self):
+        inexisting_id = 24
+        response = self.client.get(
+            reverse('get-provider-by-id',  kwargs={'id': inexisting_id}))
+        self.assertRaisesMessage(response, 'Provider does not exist')
+
+    def test_get_provider_by_id_correct(self):
+        existant_id = 2
+        response = self.client.get(
+            reverse('get-provider-by-id',  kwargs={'id': existant_id}))
+        self.assertEqual(len(response.json()), 1)

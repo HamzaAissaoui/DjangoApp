@@ -6,6 +6,7 @@ from django.contrib.gis.geos import Polygon as Poly, Point
 from .models import Polygon
 from django.core.paginator import Paginator
 from .helper import validate_create_data, INVALID_POLYGON_MESSAGE, check_polygon_existence, validate_update_data
+from django.core.serializers import serialize
 # Create your views here.
 
 
@@ -13,22 +14,26 @@ from .helper import validate_create_data, INVALID_POLYGON_MESSAGE, check_polygon
 def get_polygons(request):
     lng = request.GET.get('lng', None)  # Default value None
     lat = request.GET.get('lat', None)
+    fields = ['p_name', 'price', 'information', 'provider']
     if lng is None or lat is None:
         polygon_list = Polygon.objects.all()
     else:
         polygon_list = Polygon.objects.filter(information__covers=Point(
             float(lng), float(lat)))  # All polygons that contain the coordinates
+        fields.remove('information')  # We don't return geojson for lat/lng get requests
 
     paginator = Paginator(polygon_list, 20)  # 20 Polygons per page
-    page_number = request.GET.get('page', 0)
+    page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
-    return HttpResponse(page_obj) if page_obj else HttpResponseNotFound('There are no polygons!')
+    response = serialize('json', page_obj, fields=tuple(fields))
+    return HttpResponse(response, content_type='application/json') if page_obj else HttpResponseNotFound('There are no polygons!')
 
 
 @require_GET
 def get_polygon_by_id(request, id):
     polygon = Polygon.objects.filter(id=id).first()
-    return HttpResponse(polygon) if polygon else HttpResponseNotFound('Polygon does not exist!')
+    response = serialize('json', polygon)
+    return HttpResponse(response, content_type='application/json') if polygon else HttpResponseNotFound('Polygon does not exist!')
 
 
 @require_POST
@@ -52,8 +57,8 @@ def create_polygon(request):
         p.save()
     except:
         return HttpResponseBadRequest(INVALID_POLYGON_MESSAGE)
-
-    return HttpResponse('Polygon created successfully!')
+    response = serialize('json', p)
+    return HttpResponse(response, content_type='application/json')     
 
 
 @require_http_methods(['DELETE'])
@@ -62,7 +67,6 @@ def delete_polygon_by_id(request, id):
     check_polygon = check_polygon_existence(request, id)  # Returns either the data or an http error
     if not isinstance(check_polygon, tuple):
         return check_polygon  # HTTP error
-
     check_polygon[0].delete()
     return HttpResponse('Polygon Deleted successfully!')
 
@@ -92,4 +96,5 @@ def update_polygon_by_id(request, id):
 
     for query in polygon_query:
         query.save()
-    return HttpResponse(polygon_query)
+    response = serialize('json', polygon_query)
+    return HttpResponse(response, content_type='application/json')  
