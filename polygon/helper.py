@@ -50,7 +50,14 @@ def validate_update_data(request, polygon):
         return HttpResponseBadRequest('No data was received')
 
     data = json.loads(request.body.decode('utf-8'))
-    data['p_name'] = data.get('p_name', polygon.p_name)  # Default value in case the field is not to be updated 
+
+    data['p_name'] = data.get('p_name', None)
+    if data['p_name'] and data['p_name'] != polygon.p_name:
+        if Polygon.objects.filter(p_name=data['p_name']):
+            return HttpResponseBadRequest('p_name already exists, please use another one!')
+    else:
+        data['p_name'] = polygon.p_name  # Default value in case the field is not to be updated 
+
     data['price'] = data.get('price', polygon.price)
     data['information'] = data.get('coordinates', None)
 

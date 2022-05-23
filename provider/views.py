@@ -22,7 +22,7 @@ def get_all_providers(request):
 def get_provider_by_id(request, id=None):
     p = Provider.objects.filter(id=id)
     response = serializers.serialize('json', p)
-    return HttpResponse(response, content_type='application/json') if p else HttpResponseNotFound('Provider does not exist')
+    return HttpResponse(response, content_type='application/json') if p else HttpResponseNotFound('Provider does not exist!')
 
 
 @require_POST
@@ -54,7 +54,7 @@ def delete_provider_by_id(request, id):
 def update_provider_by_id(request, id):
     provider_query = Provider.objects.filter(id=id)
     if not provider_query:
-        return HttpResponseNotFound('Provider does not exist')
+        return HttpResponseNotFound('Provider does not exist!')
 
     # Returns either the data or an http error
     data = validate_update_data(request, provider_query.first())

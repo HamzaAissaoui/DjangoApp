@@ -19,7 +19,7 @@ class ProviderModelTest(TestCase):
 
     def test_provider_object_string(self):
         provider = Provider.objects.get(name='hamzaModel')
-        expected_object_name = f"\n- Provider({provider.name!r}, {provider.email!r}, {provider.phone_number!r}, \
+        expected_object_name = f"\n- Provider({provider.id!r}, {provider.name!r}, {provider.email!r}, {provider.phone_number!r}, \
                 {provider.language!r}, {provider.currency!r})"
         self.assertEqual(str(provider), expected_object_name)
 

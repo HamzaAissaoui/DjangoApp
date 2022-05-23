@@ -28,7 +28,13 @@ def validate_update_data(request, provider):
         return HttpResponseBadRequest('No data was received')
 
     data = json.loads(request.body.decode('utf-8'))
-    data['name'] = data.get('name', provider.name)
+    data['name'] = data.get('name', None)
+    if data['name'] and data['name'] != provider.name:
+        if Provider.objects.filter(name=data['name']):
+            return HttpResponseBadRequest('Name already exists, please use another one!')
+    else:
+        data['name'] = provider.name
+        
     data['email'] = data.get('email', provider.email)
     data['phone_number'] = data.get('phone_number', provider.phone_number)
     data['language'] = data.get('language', provider.language)

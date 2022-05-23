@@ -10,5 +10,5 @@ class Provider(models.Model):
     currency = models.CharField(max_length=30, null=True)
 
     def __str__(self):
-        return f"\n- Provider({self.name!r}, {self.email!r}, {self.phone_number!r}, \
+        return f"\n- Provider({self.id!r}, {self.name!r}, {self.email!r}, {self.phone_number!r}, \
                 {self.language!r}, {self.currency!r})"
