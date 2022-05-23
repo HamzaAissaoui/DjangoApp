@@ -1,7 +1,7 @@
 from django.test import TestCase
 from polygon.models import Polygon
 from provider.models import Provider
-from django.contrib.gis.geos import Polygon as Poly, Point
+from django.contrib.gis.geos import Polygon as Poly
 
 # Create your tests here.
 

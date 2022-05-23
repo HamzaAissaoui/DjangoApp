@@ -31,7 +31,7 @@ def get_polygons(request):
 
 @require_GET
 def get_polygon_by_id(request, id):
-    polygon = Polygon.objects.filter(id=id).first()
+    polygon = Polygon.objects.filter(id=id)
     response = serialize('json', polygon)
     return HttpResponse(response, content_type='application/json') if polygon else HttpResponseNotFound('Polygon does not exist!')
 

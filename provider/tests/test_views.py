@@ -8,7 +8,7 @@ class ProviderViewTest(TestCase):
     field_list = ['name', 'email', 'phone_number', 'language', 'currency']
 
     def setUp(self):
-        # Create 13 providers for pagination tests
+        # Create 22 providers for pagination tests
         number_of_providers = 22
         for provider_id in range(number_of_providers):
             Provider.objects.create(
@@ -47,3 +47,5 @@ class ProviderViewTest(TestCase):
         response = self.client.get(
             reverse('get-provider-by-id',  kwargs={'id': existant_id}))
         self.assertEqual(len(response.json()), 1)
+        self.assertEqual(response.json(), [{'model': 'provider.provider', 'pk': 2, 'fields': {
+                         'name': 'Hamza 0', 'email': 'test0@gmail.com', 'phone_number': '4084132222', 'language': 'French', 'currency': 'EUR'}}])
