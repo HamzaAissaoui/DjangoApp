@@ -87,7 +87,6 @@ class ProviderViewUpdateTest(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        # Create 1 provider for delete tests
         Provider.objects.create(
             name=f'Hamza 24',
             email=f'test23@gmail.com',
