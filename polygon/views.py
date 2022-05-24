@@ -84,7 +84,7 @@ def update_polygon_by_id(request, id):
 
     if data['information'] is None:
         polygon_query.update(
-            p_name=data['p_name'], price=data['price'])  # Polygon query
+            p_name=data['p_name'], price=data['price'])  # geojson not updated
     else:
         try:
             information = Poly(data['coordinates'])
