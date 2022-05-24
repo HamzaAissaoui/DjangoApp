@@ -22,4 +22,5 @@ There is also Basic Authentication (Using provider name in headers) to be able t
 
 The code Follows standard pep8 style.
 
-Currently working on unit and integration tests.
+The project also contains Unit tests for the models and the views as well,
+When testing the views, you need to run them for each app (component) separately because they are using the same testing database which can cause issues with primary keys if we run all tests at once
